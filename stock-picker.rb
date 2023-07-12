@@ -1,14 +1,19 @@
-0. crear array resultado vacia
-1. buscar numero mas bajo en la array
-2. en que value esta? 0,1,2,3,4 -> pasar como primer valor a la array
-3. buscar numero mas alto en la array
-4. en que value esta? 0,1,2,3,4 -> pasar como segundo valor a la array
-5. retornar la nueva array
-
 dayPRICES = [17,3,6,9,15,8,6,1,10]
 
-def stock_picker(Hash)
-  resultado = Hash.new
-
+def stock_picker(dayPRICES)
+  resultado = []
+  beneficioMAX = nil
+  dayPRICES.each_with_index do |numero, indiceACTUAL|
+    for index in (indiceACTUAL + 1)..(dayPRICES.length() - 1) do
+      beneficioACTUAL = dayPRICES[index] - numero
+      if beneficioMAX.nil?
+        beneficioMAX = beneficioACTUAL
+        resultado = [indiceACTUAL, index]
+      elsif beneficioACTUAL >= beneficioMAX
+        beneficioMAX = beneficioACTUAL
+        resultado = [indiceACTUAL, index]
+      end
+    end
+  end 
   return resultado
 end
